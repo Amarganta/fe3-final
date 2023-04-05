@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const DetailCard = () => {
-  const [dentist, setDentist] = useState();
+  const [dentist, setDentist] = useState([]);
   const params = useParams();
 
   const getDentists = async () => {
@@ -19,7 +19,6 @@ const DetailCard = () => {
   useEffect(() => {
     getDentists();
   }, []);
-  console.log(dentist, "***");
 
   return (
     //As instruções que estão com {''} precisam ser
