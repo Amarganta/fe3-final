@@ -1,11 +1,9 @@
-import styles from "./Card.module.css";
+import { Link } from "react-router-dom";
+import styles from "../Styles/Card.module.css";
 
-const Card = () => {
-
+const Card = ({ name, username, id }) => {
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
       <div className={`card`}>
         <img
           className="card-img-top"
@@ -13,11 +11,11 @@ const Card = () => {
           alt="doctor placeholder"
         />
         <div className={`card-body ${styles.CardBody}`}>
-          {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
-          que vem da API */}
-          <a href={`/dentist/MatriculaDoDentista`}>
-            <h5 className={`card-title ${styles.title}`}>Nome e Sobrenome do dentista</h5>
-          </a>
+          <Link to={`/detail/${id}`}>
+            <h5 className={`card-title ${styles.title}`}>
+              {name} | {username}
+            </h5>
+          </Link>
         </div>
       </div>
     </>
