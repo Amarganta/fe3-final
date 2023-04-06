@@ -21,17 +21,15 @@ function App() {
 
   return (
     <>
-      <GlobalContextProvider>
-        <div className={state?.theme === "light" ? "app light" : "app dark"}>
-          <Navbar />
-          <main>
-            <DentistsContex.Provider value={dentists}>
-              <Outlet />
-            </DentistsContex.Provider>
-          </main>
-          <Footer />
-        </div>
-      </GlobalContextProvider>
+      <div className={state?.theme === "light" ? "app light" : "app dark"}>
+        <Navbar />
+        <main>
+          <DentistsContex.Provider value={dentists}>
+            <Outlet />
+          </DentistsContex.Provider>
+        </main>
+        <Footer />
+      </div>
     </>
   );
 }
