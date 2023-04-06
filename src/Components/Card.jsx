@@ -1,7 +1,15 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { GlobalContext } from "../Context/GlobalContext";
 import styles from "../Styles/Card.module.css";
 
 const Card = ({ name, username, id }) => {
+  const { dispatch } = useContext(GlobalContext);
+
+  const handleClick = () => {
+    // Aquí se envía el objeto al context para ser guardado en el local storage
+    dispatch({ type: "add_item", payload: { id, name, username } });
+  };
+
   return (
     <>
       <div className={`card`}>
@@ -11,11 +19,10 @@ const Card = ({ name, username, id }) => {
           alt="doctor placeholder"
         />
         <div className={`card-body ${styles.CardBody}`}>
-          <Link to={`/detail/${id}`}>
-            <h5 className={`card-title ${styles.title}`}>
-              {name} | {username}
-            </h5>
-          </Link>
+          <h5 className={`card-title ${styles.title}`}>
+            {name} | {username}
+          </h5>
+          <button onClick={handleClick}>Guardar</button>
         </div>
       </div>
     </>

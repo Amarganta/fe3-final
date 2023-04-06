@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import DentistsContex from "./Context/DentistsContext";
+import GlobalContextProvider, { GlobalContext } from "./Context/GlobalContext";
 
 function App() {
   const [dentists, setDentists] = useState();
+  const { state } = useContext(GlobalContext);
 
   const getDentists = async () => {
     const res = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -19,17 +21,17 @@ function App() {
 
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar a classe dark ou light */}
-      <div className={`app light}`}>
-        <Navbar />
-        <main>
-          <DentistsContex.Provider value={dentists}>
-            <Outlet />
-          </DentistsContex.Provider>
-        </main>
-        <Footer />
-      </div>
+      <GlobalContextProvider>
+        <div className={state?.theme === "light" ? "app light" : "app dark"}>
+          <Navbar />
+          <main>
+            <DentistsContex.Provider value={dentists}>
+              <Outlet />
+            </DentistsContex.Provider>
+          </main>
+          <Footer />
+        </div>
+      </GlobalContextProvider>
     </>
   );
 }

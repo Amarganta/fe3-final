@@ -1,17 +1,26 @@
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import styles from "../Styles//Navbar.module.css";
+import styles from "../Styles/Navbar.module.css";
+import { GlobalContext } from "../Context/GlobalContext";
 
 const Navbar = () => {
+  const { state, dispatch } = useContext(GlobalContext);
+
+  const handleToggleTheme = () => {
+    dispatch({ type: "toggle_theme" });
+  };
+
   return (
     <header className="sticky-top">
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm navbar-light bg-light`}
+        className={`navbar navbar-expand-sm ${
+          state.theme === "light"
+            ? "navbar-light bg-light"
+            : "navbar-dark bg-dark"
+        }`}
         aria-label="Third navbar example"
       >
         <div className="container">
-          {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
           <Link className={`navbar-brand ${styles.navbarBrand}`} to="/home">
             DH Odonto
           </Link>
@@ -49,8 +58,11 @@ const Navbar = () => {
               </li>
 
               <li className={`nav-item`}>
-                <button className={`btn btn-light${styles.btnStyle}`}>
-                  ☀ 🌙
+                <button
+                  className={`btn btn-light ${styles.btnStyle}`}
+                  onClick={handleToggleTheme}
+                >
+                  {state.theme === "light" ? "☀️" : "🌙"}
                 </button>
               </li>
             </ul>
