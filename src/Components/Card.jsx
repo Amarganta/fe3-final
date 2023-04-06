@@ -11,7 +11,7 @@ const Card = ({ name, username, id }) => {
   };
 
   const handleClickEliminar = () => {
-    dispatch({ type: "remove_item", payload: { id } });
+    dispatch({ type: "remove_item", payload: { id, name, username } });
   };
 
   return (
