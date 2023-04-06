@@ -12,13 +12,11 @@ import Detail from "./Routes/Detail";
 import GlobalContextProvider from "./Context/GlobalContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-//Lembre-se de configurar suas rotas e seu contexto aqui
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <GlobalContextProvider>
         <Routes>
-          {" "}
           <Route path="/" element={<App />}>
             <Route path="/home" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
