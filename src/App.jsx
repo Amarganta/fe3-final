@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
 import DentistsContex from "./Context/DentistsContext";
-import GlobalContextProvider, { GlobalContext } from "./Context/GlobalContext";
+import { GlobalContext } from "./Context/GlobalContext";
 
 function App() {
   const [dentists, setDentists] = useState();
@@ -26,6 +26,17 @@ function App() {
         <main>
           <DentistsContex.Provider value={dentists}>
             <Outlet />
+            <div className="info">
+              <h1>Trabajo Final</h1>
+              <p>Este trabajo pertence a:</p>
+              <h3>Victoria Peluffo</h3>
+              <h3>Amaranta González</h3>
+              <p>
+                Es la entrega final de Frontend III <br /> materia que pertenece
+                al ciclo de estudio de la carrera <br /> Certified Web Developer
+                de Digital House
+              </p>
+            </div>
           </DentistsContex.Provider>
         </main>
         <Footer />
