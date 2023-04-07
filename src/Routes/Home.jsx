@@ -11,7 +11,9 @@ const Home = () => {
       <div className="card-grid container">
         {dentists &&
           dentists.map((item) => (
-            <Card name={item.name} username={item.username} id={item.id} />
+            <div key={item.id}>
+              <Card name={item.name} username={item.username} id={item.id} />
+            </div>
           ))}
       </div>
     </>
